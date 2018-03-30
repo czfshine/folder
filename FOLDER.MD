@@ -12,5 +12,5 @@
 -----------------------
 >Files Description
 
-* `main.lua` 主程序
+* `main.lua`  主程序
 * `README.MD` 描述文件
