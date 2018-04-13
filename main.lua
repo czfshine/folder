@@ -9,14 +9,14 @@ require"lfs"
 FOLDER_FILE_NAME="FOLDER.MD"
 
 
-local File=Class(function(self)
+local MDFile=Class(function(self)
     self.filecontant={}
     self.MainDesrc={}
     self:getContant();
     self.dirDesrc={}
     self.fileDesrc={}
 
-    
+
     self.dirs={}
     self.files={}
     self.dirsid={}
@@ -24,23 +24,23 @@ local File=Class(function(self)
 
 
     self.cur=3;
-end)    
-function File:getContant()
-    local theFile=io.open(FOLDER_FILE_NAME,"r");
-    if theFile==nil then 
+end)
+function MDFile:getContant()
+    local theMDFile=io.open(FOLDER_FILE_NAME,"r");
+    if theMDFile==nil then
         self.filecontant={};
     else
-        for i in theFile:lines() do
+        for i in theMDFile:lines() do
             table.insert( self.filecontant, i );
         end
-        theFile:close()
+        theMDFile:close()
     end
 end
 
-function File:getMainName()
+function MDFile:getMainName()
     return self.filecontant[1] --???????????
 end
-function File:addMainDesrc( )
+function MDFile:addMainDesrc( )
     for i=self.cur,#(self.filecontant) do
         line=self.filecontant[i]
         if(line:sub(1,1)=='>') then
@@ -51,10 +51,10 @@ function File:addMainDesrc( )
             return
         end
     end
-    
+
 end
 
-function File:gotoNext()
+function MDFile:gotoNext()
     for i=self.cur,#(self.filecontant) do
         line=self.filecontant[i]
         if(line:sub(1,1)=='*') then
@@ -67,7 +67,7 @@ function File:gotoNext()
 
 end
 
-function File:getDirDesrc()
+function MDFile:getDirDesrc()
     for i=self.cur,#(self.filecontant) do
         line=self.filecontant[i]
         if(line:sub(1,1)=='*') then
@@ -83,7 +83,7 @@ function File:getDirDesrc()
 end
 
 
-function File:getFileDesrc()
+function MDFile:getMDFileDesrc()
     for i=self.cur,#(self.filecontant) do
         line=self.filecontant[i]
         if(line:sub(1,1)=='*') then
@@ -97,13 +97,13 @@ function File:getFileDesrc()
         end
     end
 end
-function File:parse()
+function MDFile:parse()
     self:addMainDesrc()
     ptt(self.MainDesrc)
     self:gotoNext()
     self:getDirDesrc()
     self:gotoNext()
-    self:getFileDesrc()
+    self:getMDFileDesrc()
 end
 
 local sep = "/"
@@ -124,7 +124,7 @@ function newfn( self,fn,n )
         end
     end
 end
-function File:ListFile()
+function MDFile:ListMDFile()
     i=0
     j=0;
     for file in lfs.dir('.') do
@@ -143,13 +143,13 @@ function File:ListFile()
             end
 		end
     end
-    
+
 end
-function File:List(n)
+function MDFile:List(n)
     pt(self.dirs,newfn(self,print,n))
     pt(self.files,newfn(self,print,n))
 end
-function File:ToFile(filename )
+function MDFile:ToMDFile(filename )
     filename=filename or FOLDER_FILE_NAME;
     local file=io.open(filename,"w")
     print(file)
@@ -164,7 +164,7 @@ function File:ToFile(filename )
     end
     file:write("\n\n")
 
-    file:write("文件说明\n----------------\n>Files Description Description\n\n")
+    file:write("文件说明\n----------------\n>MDFiles Description Description\n\n")
     for k,v in pairs(self.fileDesrc) do
         file:write("* `"..k.."`  "..v.."\n")
     end
@@ -172,11 +172,11 @@ function File:ToFile(filename )
 end
 REPL=require "repl.repl"
 
-file=File();
+file=MDFile();
 print(file:getMainName());
 file:parse();
-file:ListFile()
-file:ToFile("test.md")
+file:ListMDFile()
+file:ToMDFile("test.md")
 
 
 config={
@@ -190,7 +190,7 @@ config={
         "filename..."
       },
       fn=function (t )
-        if(t.other[1]=="n") then 
+        if(t.other[1]=="n") then
             file:List(true)
         else
             file:List()
@@ -209,13 +209,13 @@ config={
                 ids=t.other[1]
                 if(ids:sub(1,1)=='f') then
                     filename=file.filesid[tonumber(ids:sub(2,-1))]
-                    if(not filename) then 
+                    if(not filename) then
                         print("找不到对应的文件")
                     else
                         print("修改"..filename.."的描述")
                         str=io.read("*l")
                         file.fileDesrc[filename]=str
-                        file:ToFile("test.md")
+                        file:ToMDFile("test.md")
                     end
                 else
                 end
