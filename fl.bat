@@ -1,0 +1,1 @@
+lua %APPDATA%\folder\fl.lua %*
