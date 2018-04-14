@@ -11,7 +11,12 @@ environment:
   - LUA: "luajit 2.1 --compat 5.2"
 
 
-
+before_build:
+  - set PATH=C:\Python27\Scripts;%PATH%
+  - pip install hererocks
+  - hererocks here --%LUA% -rlatest
+  - call here\bin\activate
+  
 build_script:
   - lua install.lua
 test_script:
