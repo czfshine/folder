@@ -16,6 +16,7 @@ before_build:
   - hererocks here --%LUA% -rlatest
   - call here\bin\activate
   - luarocks install luafilesystem
+  - mkdir bin
   
 build_script:
   - lua install.lua ci
