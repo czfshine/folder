@@ -12,7 +12,7 @@ environment:
 
 
 before_build:
-  - set PATH=C:\Python27\Scripts;%PATH%
+  - set PATH=.\bin;C:\Python27\Scripts;%PATH%
   - pip install hererocks
   - hererocks here --%LUA% -rlatest
   - call here\bin\activate
@@ -20,4 +20,6 @@ before_build:
 build_script:
   - lua install.lua
 test_script:
-  - lua testinstall.lua
+  - fl
+  - cd luagy
+  - fl
