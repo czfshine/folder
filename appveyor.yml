@@ -17,7 +17,7 @@ before_build:
   - call here\bin\activate
   
 build_script:
-  - lua install.lua
+  - lua install.lua ci
 test_script:
   - fl
   - cd luagy
