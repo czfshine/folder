@@ -15,6 +15,7 @@ before_build:
   - pip install hererocks
   - hererocks here --%LUA% -rlatest
   - call here\bin\activate
+  - luarocks install luafilesystem
   
 build_script:
   - lua install.lua ci
