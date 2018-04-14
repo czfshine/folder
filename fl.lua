@@ -1,7 +1,7 @@
 #!/usr/bin/lua
 --conding:utf-8
 
-package.path=package.path..";/usr/share/folder/?.lua;/usr/share/folder/luagy/?.lua;/usr/share/folder/luagy/Penlight/lua/?.lua;".."./luagy/?.lua;./luagy/Penlight/lua/?.lua"
+package.path=package.path.."C:\\Users\\appveyor\\AppData\\Roaming\\folder\\luagy\\Penlight\\lua\\?.lua;C:\\Users\\appveyor\\AppData\\Roaming\\folder\\luagy\\?.lua;C:\\Users\\appveyor\\AppData\\Roaming\\folder\\?.lua;/usr/share/folder/?.lua;/usr/share/folder/luagy/?.lua;/usr/share/folder/luagy/Penlight/lua/?.lua;".."./luagy/?.lua;./luagy/Penlight/lua/?.lua"
 
 Command=require("REPL.command")
 Folder=require "folder"
