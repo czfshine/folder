@@ -32,7 +32,7 @@ if os.islinux then
 end
 
 if os.iswindow then 
-    installdir="%APPDATA%\\folder"
+    installdir="%APPDATA%\\folder\\"
     run("xcopy  /E /Q /Y  .  "..installdir)
 else
     installdir="/usr/share/folder"
