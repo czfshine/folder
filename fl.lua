@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 --conding:utf-8
-appdata=os.getenv("APPDATA")
+appdata=os.getenv("APPDATA") or ""
 package.path=package.path..";;"..appdata..
     "\\folder\\luagy\\Penlight\\lua\\?.lua;"..
     appdata.."\\folder\\luagy\\?.lua;"..appdata..
