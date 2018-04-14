@@ -1,4 +1,5 @@
 --conding=utf8
+os.execute("cd")
 function run (cmd,desc)
     a=os.execute(cmd)
     print("[INFO] running "..cmd)
