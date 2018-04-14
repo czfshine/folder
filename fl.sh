@@ -1,0 +1,1 @@
+lua /usr/share/folder/fl.lua $*

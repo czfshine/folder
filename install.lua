@@ -28,7 +28,7 @@ package.path=package.path..";/usr/share/folder/?.lua;/usr/share/folder/luagy/?.l
 require("system.osinfo")
 print("[INFO] installing ...")
 if os.islinux then 
-    run("chmod 777 fl.lua")
+    run("chmod 777 fl.sh")
 end
 
 if os.iswindow then 
@@ -48,5 +48,5 @@ if os.iswindow then
     end
     run("copy fl.bat ".."\""..bindir .."\"")
 else
-    sudo("ln -s /usr/share/folder/fl.lua /usr/bin/fl")
+    sudo("ln -s /usr/share/folder/fl.sh /usr/bin/fl")
 end
