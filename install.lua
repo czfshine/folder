@@ -1,0 +1,10 @@
+io.popen("chmod 777 fl.lua")
+io.popen("git submodule init")
+io.popen("git submodule update")
+io.popen("cd luagy")
+io.popen("git submodule init")
+io.popen("git submodule update")
+io.popen("cd ..")
+io.popen("cp -R . /usr/share/folder")
+io.popen("ln -s /usr/share/folder/fl.lua /usr/bin/fl")
+
