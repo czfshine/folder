@@ -8,7 +8,9 @@ environment:
   - LUA: "luajit 2.0 --compat 5.2"
   - LUA: "luajit 2.1"
   - LUA: "luajit 2.1 --compat 5.2"
-
+platform:
+  - x86
+  - Any CPU
 
 before_build:
   - set PATH=C:\projects\folder\bin;C:\Python27\Scripts;%PATH%
