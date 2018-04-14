@@ -1,9 +1,11 @@
 --conding:utf-8
 package.path=package.path..";./luagy/?.lua"
 Class=require("grammar.class")
+require"lfs"
 File=require("file")
 
-Folder=Class(function(self,path)
+
+local Folder=Class(function(self,path)
     
     self.path=path
     self.files={}
@@ -22,7 +24,12 @@ end
 
 --模仿ls命令
 function Folder:list(arg)
-    
+    for k,v in pairs(self.dirs) do
+        print(v:toString())
+    end
+    for k,v in pairs(self.files) do
+        print(v:toString())
+    end
 end
 
 --增加注释
@@ -44,14 +51,14 @@ function Folder:getFiles()
     for file in lfs.dir(self.path) do
 
         if file ~= "." and file ~= ".." then
-            
+
             local p = '.'..sep..file
             local attr = lfs.attributes (p)
-            
+
             if attr.mode == "directory" then
-                self.dirs=File(file)
+                self.dirs[file]=File(file)
             else --is file
-                self.files=File(file)
+                self.files[file]=File(file)
             end
 		end
     end
@@ -66,3 +73,4 @@ end
 function Folder:wirteMDfile()
 
 end
+return Folder
