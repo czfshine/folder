@@ -53,9 +53,12 @@ dirdesc  ::= *MarkdownQuoting	;文件夹说明
 dirusage ::= *MarkdownText *until dirmark 
 ;子文件夹描述开始标记，从这里开始下面就是子文件夹的描述
 dirmark  ::= *MarkdownH1 *MarkdownQuoting 
-line     ::= *todo ;一行就是一个文件夹
+;一行就是一个文件
+line     ::= "* `" *filename "`" *filedesc "|" tags
 filemark ::= *MarkdownH1 *MarkdownQuoting ;子文件描述开始
 OPS      ::= *todo ;可选的而外信息
+
+tags     ::= *todo
 ```
 # Usage
 
