@@ -30,7 +30,7 @@ title: 文件说明
 >Files Description
 
 * `main.lua`  主程序
-* `README.MD` 描述文件
+* `FOLDER.MD` 文件描述文件
 
 ----- ---
 >额外选项

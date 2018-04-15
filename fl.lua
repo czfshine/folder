@@ -19,5 +19,10 @@ addpath("/usr/share/folder/?.lua")
 Command=require("REPL.command")
 Folder=require "folder"
 
+
 f=Folder(".")
+if(arg[1]~=nil) then 
+    f:edit(arg[1])
+    return 
+end
 f:list()

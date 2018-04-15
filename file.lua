@@ -14,7 +14,7 @@ end)
 
 --public:
 function File:toString()
-    return ((self.filename):ljust(20," "))..((not self.Descript=="") and self.Descript  or "Not has Descript")
+    return ((self.filename):ljust(20," "))..(((self.Descript~="") and self.Descript ) or "Not has Descript")
 end
 --解析md的字符串
 function File:initFromMDstr(str)
@@ -34,6 +34,14 @@ function File:initFromMDstr(str)
     endl=con[3]:lfind("|") and con[3]:lfind("|")-1 or #c
     self.Descript=c:sub(1,endl):strip()
     self.parseSuccess=true
+
+    --todo:tag
 end
 
+function File:toMDstr()
+    str="* "
+    str=str.."`"..self.filename.."` "
+    str=str..self.Descript
+    return str
+end
 return File

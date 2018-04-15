@@ -16,6 +16,7 @@ before_install:
   - source here/bin/activate
   - luarocks install luafilesystem
   - mkdir bin
+  - mkdir out
 
 install:
   - lua install.lua ci

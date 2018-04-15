@@ -1,6 +1,7 @@
 --conding:utf-8
 package.path=package.path..";./luagy/?.lua"
 Class=require("grammar.class")
+path=require "pl.path"
 require"lfs"
 File=require("file")
 
@@ -33,15 +34,72 @@ function Folder:list(arg)
     self:getFiles()
     self:readMDfile()
     for k,v in pairs(self.dirs) do
-        print(v:toString())
+        if(self.dirsinfo[v.filename]) then 
+            print(self.dirsinfo[v.filename]:toString())
+        else
+            print(v:toString())
+        end
     end
     for k,v in pairs(self.files) do
-        print(v:toString())
+        if(self.filesinfo[v.filename]) then 
+            print(self.filesinfo[v.filename]:toString())
+        else
+            print(v:toString())
+        end
     end
 end
 
+--- edit 编辑命令
+--[[                             or
+    * 文件不存在                  -1
+    * 文件存在     
+        * MD文件不存在            000
+            *是否增加父文件夹描述  0_0
+        * MD文件存在              100
+            * 信息存在            010
+            * 信息不存在          000
+]]
+function Folder:edit(filepath)
+
+    if(not path.exists(filepath)) then
+        print("file:`"..filepath.."` don't exists")
+        return -1
+    end
+
+    r=self:readMDfile()
+    if(r==false) then 
+        --MD文件不存在
+        print("Do you want add this folder decscript to FOLDER.MD?[Y/n]")
+        r=io.read("*l")
+        if(r=="" or r=="Y" or r=="y" or r=="yes") then
+        print("Please input folder decscript:")
+        io.write(">")
+        dec=io.read("*l")
+
+        end
+       
+       return 
+    end
+
+    infos=self.dirsinfo
+    if(path.isfile(filepath)) then 
+        infos=self.filesinfo
+    end
+    if(infos[filepath]) then
+        --信息存在
+        return 
+    end
+    --信息不存在
 
 
+end
+
+
+--===========输入输出=============
+
+function Folder:inputDirDesc()
+
+end
 
 --增加注释
 function Folder:addDescript(filename,desc)
@@ -78,7 +136,7 @@ end
 function Folder:readMDfile()
     mdf=MDFile(self.path.."/FOLDER.MD")
     if(mdf.isexist==false) then
-        return 
+        return false
     end 
     for k,l in pairs(mdf.dirline) do 
         d=File()

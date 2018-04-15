@@ -17,7 +17,10 @@ function TestFile:testline()
     f:initFromMDstr("* `filename`    ")
     lu.assertEquals(f.filename,"filename")
     lu.assertEquals(f.Descript,"")
-    
 
+    f:initFromMDstr("* `中文` abcd 中文 jdfhjs |rcm")
+    lu.assertEquals(f.filename,"中文")
+    lu.assertEquals(f.Descript,"abcd 中文 jdfhjs")
+    
 
 end

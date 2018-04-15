@@ -19,6 +19,7 @@ before_build:
   - call here\bin\activate
   - luarocks install luafilesystem
   - mkdir bin
+  - mkdir out
   
 build_script:
   - lua install.lua ci
