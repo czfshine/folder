@@ -4,7 +4,6 @@ Class=require("grammar.class")
 require"lfs"
 File=require("file")
 
-
 local Folder=Class(function(self,path)
     
     self.path=path
@@ -18,12 +17,15 @@ end)
 
 --初始化对象
 function Folder:init(path)
-    self:getFiles()
-
+    
 end
+
+--===========功能==============
 
 --模仿ls命令
 function Folder:list(arg)
+    self:getFiles()
+    self:readMDfile()
     for k,v in pairs(self.dirs) do
         print(v:toString())
     end
@@ -31,6 +33,9 @@ function Folder:list(arg)
         print(v:toString())
     end
 end
+
+
+
 
 --增加注释
 function Folder:addDescript(filename,desc)

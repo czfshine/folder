@@ -25,86 +25,12 @@ local MDFile=Class(function(self)
 
     self.cur=3;
 end)
-function MDFile:getContant()
-    local theMDFile=io.open(FOLDER_FILE_NAME,"r");
-    if theMDFile==nil then
-        self.filecontant={};
-    else
-        for i in theMDFile:lines() do
-            table.insert( self.filecontant, i );
-        end
-        theMDFile:close()
-    end
-end
+
 
 function MDFile:getMainName()
     return self.filecontant[1] --???????????
 end
-function MDFile:addMainDesrc( )
-    for i=self.cur,#(self.filecontant) do
-        line=self.filecontant[i]
-        if(line:sub(1,1)=='>') then
-            table.insert(  self.MainDesrc, line:sub(2,-1))
-            table.insert(  self.MainDesrc, "\n")
-        else
-            self.cur=i+1
-            return
-        end
-    end
 
-end
-
-function MDFile:gotoNext()
-    for i=self.cur,#(self.filecontant) do
-        line=self.filecontant[i]
-        if(line:sub(1,1)=='*') then
-            self.cur=i
-            break
-        end
-    end
-    --print(self.filecontant[self.cur])
-    --print(self.filecontant[self.cur+1])
-
-end
-
-function MDFile:getDirDesrc()
-    for i=self.cur,#(self.filecontant) do
-        line=self.filecontant[i]
-        if(line:sub(1,1)=='*') then
-            string.gsub(line,"`(.+)`(.+)",function (f,s )
-               self.dirDesrc[f]=s
-               print(f,s)
-            end)
-        else
-            self.cur=i+1;
-            break
-        end
-    end
-end
-
-
-function MDFile:getMDFileDesrc()
-    for i=self.cur,#(self.filecontant) do
-        line=self.filecontant[i]
-        if(line:sub(1,1)=='*') then
-            string.gsub(line,"`(.+)`(.+)",function (f,s )
-               self.fileDesrc[f]=s
-               print(f,s)
-            end)
-        else
-            self.cur=i+1;
-            break
-        end
-    end
-end
-function MDFile:parse()
-    self:addMainDesrc()
-    ptt(self.MainDesrc)
-    self:gotoNext()
-    self:getDirDesrc()
-    self:gotoNext()
-    self:getMDFileDesrc()
-end
 
 local sep = "/"
 local upper = ".."
