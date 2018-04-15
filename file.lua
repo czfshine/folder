@@ -18,8 +18,22 @@ function File:toString()
 end
 --解析md的字符串
 function File:initFromMDstr(str)
+    if not str:startswith("*") then
+        self.parseSuccess=false
+        return
+    end
+
+    con=str:split('`')
+    if(con:len()~= 3 ) then
+        self.parseSuccess=false
+        return
+    end
+    self.filename=con[2]
+    c=con[3]
+
+    endl=con[3]:lfind("|") and con[3]:lfind("|")-1 or #c
+    self.Descript=c:sub(1,endl):strip()
     self.parseSuccess=true
-    self.filename=str
 end
 
 return File

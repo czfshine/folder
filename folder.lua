@@ -77,11 +77,9 @@ end
 --读入MD描述文件
 function Folder:readMDfile()
     mdf=MDFile(self.path.."/FOLDER.MD")
-    print(self.path.."/FOLDER.MD")
     if(mdf.isexist==false) then
         return 
-    end
-    print("start")
+    end 
     for k,l in pairs(mdf.dirline) do 
         d=File()
         d:initFromMDstr(l)
