@@ -7,7 +7,7 @@ require("Penlight.lua.pl.stringx").import()
 ]]
 local File=Class(function ( self ,filepath)
     --public:
-    self.filename=filepath
+    self.filename=filepath or ""
     self.Descript=""
     self.attr={}
 end)
@@ -18,7 +18,8 @@ function File:toString()
 end
 --解析md的字符串
 function File:initFromMDstr(str)
-
+    self.parseSuccess=true
+    self.filename=str
 end
 
 return File

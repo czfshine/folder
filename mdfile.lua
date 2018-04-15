@@ -1,6 +1,8 @@
 Class=require("./luagy/grammar/class")
 stringx=require("pl.stringx")
-stringx.import()
+if(string.startswith==nil) then
+    stringx.import()
+end
 local MDFile=Class(function(self,path)
     self.path=path
     self.isexist=true
@@ -12,6 +14,7 @@ function MDFile:init()
         self.isexist=false
         return 0
     end
+    
 
     self.filecontant={};
     for l in infile:lines() do

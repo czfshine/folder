@@ -4,12 +4,18 @@ Class=require("grammar.class")
 require"lfs"
 File=require("file")
 
+MDFile = require("MDFile")
+
 local Folder=Class(function(self,path)
     
     self.path=path
+    --目前目录下的文件
     self.files={}
     self.dirs={}
 
+    --md文件里面有描述的文件
+    self.dirsinfo={}
+    self.filesinfo={}
     self:init(path)
 end)
 
@@ -57,9 +63,8 @@ function Folder:getFiles()
 
         if file ~= "." and file ~= ".." then
 
-            local p = '.'..sep..file
+            local p = self.path..sep..file
             local attr = lfs.attributes (p)
-
             if attr.mode == "directory" then
                 self.dirs[file]=File(file)
             else --is file
@@ -71,7 +76,27 @@ end
 
 --读入MD描述文件
 function Folder:readMDfile()
+    mdf=MDFile(self.path.."/FOLDER.MD")
+    print(self.path.."/FOLDER.MD")
+    if(mdf.isexist==false) then
+        return 
+    end
+    print("start")
+    for k,l in pairs(mdf.dirline) do 
+        d=File()
+        d:initFromMDstr(l)
+        if(d.parseSuccess) then
+            self.dirsinfo[d.filename]=d
+        end
+    end
 
+    for k,l in pairs(mdf.fileline) do 
+        d=File()
+        d:initFromMDstr(l)
+        if(d.parseSuccess) then
+            self.filesinfo[d.filename]=d
+        end
+    end
 end
 
 --写入MD描述文件
