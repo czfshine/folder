@@ -23,4 +23,13 @@ function TestMDFile:testFull()
     lu.assertEquals(MDF.dirname,"测试文件夹")
     lu.assertEquals(MDF.dirdesc,">测试文件测试文件测试文件测试文件测试文件")
     lu.assertEquals(MDF.dirusageend,20)
+
+    lu.assertEquals(MDF.hasdirmark,true)
+    lu.assertEquals(MDF.hasfilemark,true)
+    lu.assertEquals(MDF.hasopsmark,true)
+    lu.assertEquals(MDF.dirmark,22)
+    lu.assertEquals(MDF.filemark,29)
+    lu.assertEquals(MDF.opsmark,35)
+    lu.assertEquals(#MDF.dirline,2)
+    lu.assertEquals(#MDF.fileline,2)
 end
