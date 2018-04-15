@@ -4,7 +4,7 @@ Class=require("grammar.class")
 require"lfs"
 File=require("file")
 
-MDFile = require("MDFile")
+MDFile = require("mdfile")
 
 local Folder=Class(function(self,path)
     
