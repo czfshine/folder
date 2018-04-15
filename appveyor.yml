@@ -23,6 +23,7 @@ before_build:
 build_script:
   - lua install.lua ci
 test_script:
+  - lua Test.lua
   - fl
   - cd luagy
   - fl

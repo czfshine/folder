@@ -21,6 +21,7 @@ install:
   - lua install.lua ci
 
 script:
+  - lua Test.lua
   - fl
   - cd luagy
   - fl
