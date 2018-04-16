@@ -42,3 +42,4 @@ luac.out
 .vscode/
 test.md
 bin/
+out/
