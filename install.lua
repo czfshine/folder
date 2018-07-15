@@ -41,8 +41,10 @@ end
 
 if os.iswindow then 
     if arg[1]~="ci" then 
-    print("请输入一个window 环境变量PATH内的文件夹")
-    bindir=io.read("*l").."\\fl.bat"
+        print("请输入一个window 环境变量PATH内的文件夹")
+        bindir=io.read("*l").."\\fl.bat"
+    elseif arg[1]=="i" then
+        bindir=arg[2]
     else
         bindir="./bin/fl.bat"
     end

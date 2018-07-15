@@ -7,6 +7,7 @@ File=require("file")
 
 MDFile = require("mdfile")
 
+
 local Folder=Class(function(self,path)
     
     self.path=path
@@ -22,14 +23,18 @@ end)
 
 --public:
 
---初始化对象
+--- 初始化对象
+-- @param path
+--
 function Folder:init(path)
     
 end
 
 --===========功能==============
 
---模仿ls命令
+--- 模仿ls命令
+ -- @param arg
+ --
 function Folder:list(arg)
     self:getFiles()
     self:readMDfile()
@@ -50,14 +55,17 @@ function Folder:list(arg)
 end
 
 --- edit 编辑命令
+-- * 文件不存在                  -1
+-- * 文件存在
+--   * MD文件不存在            000
+--       * 是否增加父文件夹描述  0_0
+--   * MD文件存在              100
+--       * 信息存在            010
+--       * 信息不存在          000
+-- @param filepath
+---
 --[[                             or
-    * 文件不存在                  -1
-    * 文件存在     
-        * MD文件不存在            000
-            *是否增加父文件夹描述  0_0
-        * MD文件存在              100
-            * 信息存在            010
-            * 信息不存在          000
+
 ]]
 function Folder:edit(filepath)
 
@@ -67,17 +75,19 @@ function Folder:edit(filepath)
     end
 
     r=self:readMDfile()
+
     if(r==false) then 
         --MD文件不存在
-        print("Do you want add this folder decscript to FOLDER.MD?[Y/n]")
+        mdf=MDFile(self.path.."/FOLDER.MD")
+
+        io.write("Do you want add this folder decscript to FOLDER.MD?[Y/n]")
+
         r=io.read("*l")
         if(r=="" or r=="Y" or r=="y" or r=="yes") then
-        print("Please input folder decscript:")
-        io.write(">")
-        dec=io.read("*l")
-
+            print("Please input folder decscript:")
+            io.write(">")
+            dec=io.read("*l")
         end
-       
        return 
     end
 

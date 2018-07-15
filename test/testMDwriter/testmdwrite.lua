@@ -29,6 +29,6 @@ function TestMDWriter:testWriteToFile()
         files={f1,f2,f3}
     }
     w=MDWriter(dirdata)
-    w:writeToFile()   
+    w:writeToFile()
 
 end

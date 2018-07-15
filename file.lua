@@ -5,6 +5,8 @@ require("Penlight.lua.pl.stringx").import()
 --[[
     代表一个文件或者目录
 ]]
+
+--@class
 local File=Class(function ( self ,filepath)
     --public:
     self.filename=filepath or ""

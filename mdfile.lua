@@ -14,7 +14,6 @@ function MDFile:init()
         self.isexist=false
         return 0
     end
-    
 
     self.filecontant={};
     for l in infile:lines() do
