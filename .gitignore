@@ -44,3 +44,7 @@ test.md
 bin/
 out/
 .idea/
+folderjava/target/
+folderjava/.settings/
+folder.ipr
+*.iws
